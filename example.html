@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <title>Copy to Clipboard</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+  <div class="container">
+    <h1>複製到剪貼簿的範例</h1>
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>自己寫JavaScript</legend>
+        <div class="control-group">
+          <label class="control-label" for="txtMessage">Copy to Clipboard</label>
+          <div class="controls">
+            <div class="input-append">
+              <input type="text" id="txtMessage" class="input-xlarge" placeholder="寫些什麼...">
+              <button type="button" id="btnCopy" class="btn btn-primary btn-sm">複製</button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <script src="js/ZeroClipboard.js"></script>
+  <script>    ZeroClipboard.config({ moviePath: 'js/ZeroClipboard.swf' });    var client = new ZeroClipboard(document.getElementById('btnCopy'));    client.on('load', function (client) {
+      client.on('dataRequested', function () {
+        var dMessage = document.getElementById('txtMessage');        client.setText(dMessage.value);
+      });
+      client.on('complete', function (client, args) {
+        alert("成功複製到剪貼簿: " + args.text);
+      });
+    });    </script>
+</body>
+</html>

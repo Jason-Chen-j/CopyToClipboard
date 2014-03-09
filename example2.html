@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <title>Copy to Clipboard</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>複製到剪貼簿的範例</h1>
+      <p class="lead">設定 attribute 的方式</p>
+    </div>
+    
+    <div class="row">
+      <div id="displayTitle" class="col-md-2">Apple</div>
+      <div class="col-md-2">
+        <button name="btnCopy" class="btn btn-primary btn-sm" data-clipboard-target="displayTitle">複製</button>
+      </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="col-md-2">Android</div>
+      <div class="col-md-2">
+        <button name="btnCopy" class="btn btn-primary btn-sm" data-clipboard-text="Android">複製</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/ZeroClipboard.js"></script>
+  <script>    ZeroClipboard.config({ moviePath: 'js/ZeroClipboard.swf' });    var client = new ZeroClipboard(document.getElementsByName('btnCopy'));    client.on('load', function (client) {
+      client.on('complete', function (client, args) {
+        alert("成功複製到剪貼簿: " + args.text);
+      });
+    });  </script>
+</body>
+</html>
